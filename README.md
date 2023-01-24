@@ -94,8 +94,10 @@ $ export PASS=<password>
 $ export URL=$AMQ_TCP_0_SVC_PORT #check env
 
 # Execute in the Brokers pod
+# send message to queue
 ./amq-broker/bin/artemis producer --url $URL --user $USER --password $PASS --message-count 1 --destination test.queue
 
+# retrieve status
 ./amq-broker/bin/artemis queue stat --url $URL --user $USER --password $PASS
 ```
 
@@ -115,10 +117,13 @@ $ export PASS=<password>
 $ export URL=$AMQ_TCP_0_SVC_PORT #check env
 
 # Execute in the Brokers pod
+# send message to queue
 ./amq-broker/bin/artemis producer --url $URL --user $USER --password $PASS --message-count 1 --destination queue://ecommerce.order
 
+# send message to topic
 ./amq-broker/bin/artemis producer --url $URL --user $USER --password $PASS --message-count 1 --destination topic://ecommerce.delivery
 
+# retrieve status
 ./amq-broker/bin/artemis queue stat --url $URL --user $USER --password $PASS
 ```
 
@@ -170,11 +175,14 @@ $ export USER=<user>
 $ export PASS=<password>
 $ export URL=$AMQ_TCP_0_SVC_PORT #check env
 
-
+# Execute in the Brokers pod
+# send message to queue
 ./amq-broker/bin/artemis producer --url $URL --user $USER --password $PASS --message-count 1 --destination ecommerce.order::orders
 
+# send message to topic
 ./amq-broker/bin/artemis producer --url $URL --user $USER --password $PASS --message-count 1 --destination ecommerce.delivery
 
+# retrieve status
 ./amq-broker/bin/artemis queue stat --url $URL --user $USER --password $PASS
 ```
 
