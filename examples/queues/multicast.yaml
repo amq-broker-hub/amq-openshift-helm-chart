@@ -1,0 +1,10 @@
+amq:
+  name: amq
+  application: amq-broker
+  queues:
+    - name: stocks-price
+      spec:
+        addressName: stocks.price
+        queueName: stocks.price
+        removeFromBrokerOnDelete: true
+        routingType: multicast

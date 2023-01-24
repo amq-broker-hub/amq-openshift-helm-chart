@@ -1,0 +1,67 @@
+---
+{{- if .Values.amq.broker }}
+apiVersion: broker.amq.io/v1beta1
+kind: ActiveMQArtemis
+metadata:
+  name: {{ .Values.amq.name }}
+spec:
+{{- if .Values.amq.broker.adminUser }}
+  adminUser: {{ .Values.amq.broker.adminUser }}
+{{- end }}
+{{- if .Values.amq.broker.adminPassword }}
+  adminPassword: {{ .Values.amq.broker.adminPassword }}
+{{- end }}
+{{- if .Values.amq.broker.deploymentPlan }}
+  deploymentPlan:
+    {{- toYaml .Values.amq.broker.deploymentPlan | nindent 4 }}
+{{- if .Values.amq.broker.deploymentPlan.resources }}
+{{- else }}
+    resources:
+      requests:
+        cpu: 250m
+        memory: 1024Mi
+      limits:
+        cpu: 500m
+        memory: 2048Mi
+{{- end }}
+{{- else }}
+  deploymentPlan:
+    size: 1
+    image: placeholder
+    journalType: aio    
+    resources:
+      requests:
+        cpu: 250m
+        memory: 1024Mi
+      limits:
+        cpu: 500m
+        memory: 2048Mi
+{{- end }}
+{{- if .Values.amq.broker.console }}
+  console:
+    {{- toYaml .Values.amq.broker.console | nindent 4 }}  
+{{- else }}
+  console:
+    expose: true
+{{- end }}
+{{- if .Values.amq.broker.addressSettings }}
+  addressSettings:
+    {{- toYaml .Values.amq.broker.addressSettings | nindent 4 }}  
+{{- end }}
+{{- if .Values.amq.broker.acceptors }}
+  acceptors:
+    {{- toYaml .Values.amq.broker.acceptors | nindent 4 }}  
+{{- end }}
+{{- if .Values.amq.broker.connectors }}
+  connectors:
+    {{- toYaml .Values.amq.broker.connectors | nindent 4 }}  
+{{- end }}
+{{- if .Values.amq.broker.upgrades }}
+  upgrades:
+    {{- toYaml .Values.amq.broker.upgrades | nindent 4 }}  
+{{- else }}
+  upgrades:
+      enabled: false
+      minor: false
+{{- end }}
+{{- end }}

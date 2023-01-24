@@ -1,0 +1,13 @@
+{{- if .Values.amq.queues }}
+{{- range $queue := .Values.amq.queues }}
+---
+apiVersion: broker.amq.io/v1beta1
+kind: ActiveMQArtemisAddress
+metadata:
+  name: {{ $queue.name }}
+spec:
+  applyToCrNames:
+    - {{ $.Values.amq.name }}
+  {{- toYaml $queue.spec | nindent 2 }}
+{{- end }}
+{{- end }}

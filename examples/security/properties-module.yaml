@@ -1,0 +1,104 @@
+amq:
+  name: amq
+  security:
+    applyToCrNames:
+      - amq
+    loginModules:
+      propertiesLoginModules:
+        - name: prop-module
+          users:
+            - name: client
+              password: secret
+              roles:
+                - admin
+                - sender
+                - receiver
+            - name: bob
+              password: secret
+              roles:
+                - receiver                
+    securityDomains:
+      brokerDomain:
+        name: activemq
+        loginModules:
+          - name: prop-module
+            flag: required
+      consoleDomain:
+        name: hawtio
+        loginModules:
+          - name: prop-module
+            flag: required
+    securitySettings:
+      broker:
+        - match: 'activemq.#'
+          permissions:
+            - operationType: createNonDurableQueue
+              roles:
+                - admin
+            - operationType: deleteNonDurableQueue
+              roles:
+                - admin
+            - operationType: createDurableQueue
+              roles:
+                - admin
+            - operationType: deleteDurableQueue
+              roles:
+                - admin
+            - operationType: createAddress
+              roles:
+                - admin
+            - operationType: deleteAddress
+              roles:
+                - admin
+            - operationType: send
+              roles:
+                - sender
+                - receiver
+            - operationType: consume
+              roles:
+                - sender
+                - receiver
+            - operationType: browse
+              roles:
+                - sender
+                - receiver
+            - operationType: manage
+              roles:
+                - sender
+                - receiver
+        - match: ecommerce.#
+          permissions:
+            - operationType: createNonDurableQueue
+              roles:
+                - sender
+            - operationType: deleteNonDurableQueue
+              roles:
+                - sender
+            - operationType: createDurableQueue
+              roles:
+                - sender
+            - operationType: deleteDurableQueue
+              roles:
+                - sender
+            - operationType: createAddress
+              roles:
+                - sender
+            - operationType: deleteAddress
+              roles:
+                - sender
+            - operationType: send
+              roles:
+                - sender
+            - operationType: consume
+              roles:
+                - receiver
+            - operationType: browse
+              roles:
+                - receiver
+            - operationType: manage
+              roles:
+                - receiver
+      management:
+        hawtioRoles: 
+          - sender
+          - admin

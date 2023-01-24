@@ -1,0 +1,16 @@
+amq:
+  name: amq
+  application: amq-broker
+  queues:
+    - name: ecommerce-customer
+      spec:
+        addressName: ecommerce.customer
+        queueName: customer
+        removeFromBrokerOnDelete: true
+        routingType: anycast
+    - name: ecommerce-customer-dlq
+      spec:
+        addressName: ecommerce.customerDLQ
+        queueName: customerDLQ
+        removeFromBrokerOnDelete: true
+        routingType: anycast

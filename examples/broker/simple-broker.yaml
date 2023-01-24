@@ -1,0 +1,22 @@
+amq:
+  name: amq
+  broker:
+    # adminUser: admin
+    # adminPassword: admin
+    deploymentPlan:
+      size: 1
+      image: placeholder
+      requireLogin: true
+      jolokiaAgentEnabled: true
+      persistenceEnabled: false
+    addressSettings:
+      applyRule: merge_all
+    livenessProbe:
+      initialDelaySeconds: 120
+    console:
+      expose: true
+    acceptors:
+    - name: tcp
+      protocols: core,amqp,openwire
+      port: 61616
+      connectionsAllowed: 5

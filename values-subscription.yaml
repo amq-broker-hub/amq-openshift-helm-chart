@@ -1,0 +1,11 @@
+amq:
+  name: 
+  operator:
+    namespace: 
+    subscription:
+      name:
+      channel:
+      installPlanApproval:
+      source:
+      sourceNamespace:
+      allNamespaces: false

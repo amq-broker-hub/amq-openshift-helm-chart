@@ -1,0 +1,19 @@
+---
+{{- if .Values.amq.security }}
+apiVersion: broker.amq.io/v1beta1
+kind: ActiveMQArtemisSecurity
+metadata:
+  name: {{ print .Values.amq.name "-security" }}
+spec:
+  applyToCrNames:
+    - {{ .Values.amq.name }}
+  loginModules:
+    {{- toYaml .Values.amq.security.loginModules | nindent 4 }}
+  securityDomains:
+    {{- toYaml .Values.amq.security.securityDomains | nindent 4 }}
+  securitySettings:
+    broker:
+        {{- toYaml .Values.amq.security.securitySettings.broker | nindent 8 }}
+    management: 
+        {{- toYaml .Values.amq.security.securitySettings.management | nindent 8 }}
+{{- end }}

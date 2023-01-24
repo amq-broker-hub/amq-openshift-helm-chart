@@ -1,0 +1,22 @@
+amq:
+  name: amq
+  application: amq-broker
+  queues:
+    - name: ecommerce-order
+      spec:
+        addressName: ecommerce.order
+        queueName: orders
+        removeFromBrokerOnDelete: true
+        routingType: anycast
+    - name: ecommerce-order-dlq
+      spec:
+        addressName: ecommerce.orderDLQ
+        queueName: ordersDLQ
+        removeFromBrokerOnDelete: true
+        routingType: anycast
+    - name: ecommerce-delivery
+      spec:
+        addressName: ecommerce.delivery
+        queueName: delivery
+        removeFromBrokerOnDelete: true
+        routingType: multicast

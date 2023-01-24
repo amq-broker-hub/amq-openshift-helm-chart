@@ -1,0 +1,17 @@
+---
+{{- if .Values.amq.operator }}
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: {{ .Values.amq.operator.subscription.name | default "amq-broker-rhel8" }}
+{{- if .Values.amq.operator.namespace }}
+{{- else }}
+  namespace: openshift-operators
+{{- end }}  
+spec:
+  channel: {{ .Values.amq.operator.subscription.channel | default "7.10.x" }}
+  installPlanApproval: {{ .Values.amq.operator.subscription.installPlanApproval | default "Automatic" }}
+  name: {{ .Values.amq.operator.subscription.name | default "amq-broker-rhel8" }}
+  source: {{ .Values.amq.operator.subscription.source | default "redhat-operators" }}
+  sourceNamespace: {{ .Values.amq.operator.subscription.sourceNamespace | default "openshift-marketplace" }}
+{{- end }}

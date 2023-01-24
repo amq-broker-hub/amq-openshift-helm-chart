@@ -1,0 +1,12 @@
+amq:
+  name: amq
+  operator:
+    namespace: amq
+    subscription:
+      channel: 7.10.x
+      installPlanApproval: Manual
+      name: amq-broker-rhel8
+      subscription: redhat-operators
+      sourceNamespace: openshift-marketplace
+    
+

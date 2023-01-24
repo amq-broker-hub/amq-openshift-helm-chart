@@ -1,0 +1,12 @@
+amq:
+  name: amq
+  application: amq-broker
+  # broker:
+  #   deploymentPlan:
+  #     resources: 
+  #   console:
+  #   acceptors:
+  #   connectors:
+  #   upgrades:
+  # queues:
+  # security:
