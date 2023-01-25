@@ -55,6 +55,41 @@ Parâmetro                       | Descrição
 `amq.queues`                    | Informações de Address e Queues (ActiveMQArtemisAddress CR) 
 `amq.security`                  | Informações de Security (ActiveMQArtemisSecurity CR) 
 
+## Gerandos os .yamls dos exemplos
+
+Ao invés de usar o comando `helm install <name>` ou `helm upgrade <name>`, use `helm template`, ex:
+
+```bash
+## Example helm command
+helm install amq --values=examples/broker/simple-broker.yaml --values=examples/queues/multiple-queues.yaml .
+
+## To generate the manifests (.yaml files)
+helm template --values=examples/broker/simple-broker.yaml --values=examples/queues/multiple-queues.yaml . 
+```
+
+## Testando os comandos Helm
+
+Para debugar ou testar o chart, você pode utilizar o comando `helm install --dry-run`, `helm install --debug` ou os dois parâmetros juntos.
+
+```bash
+## Example helm command
+helm install amq --values=examples/broker/simple-broker.yaml --values=examples/queues/multiple-queues.yaml .
+
+## To debug and test 
+helm install amq --dry-run --debug --values=examples/broker/simple-broker.yaml --values=examples/queues/multiple-queues.yaml . 
+```
+
+## Atualizando sua instalação
+
+Para atualizar os valores você pode utilizar `helm upgrade` ou `helm upgrade --install` se vocÇe quiser fazer uma atualização com um fallback para instalar caso não exista nada instalado.
+
+```bash
+## Example helm command
+helm install amq --values=examples/broker/simple-broker.yaml --values=examples/queues/multiple-queues.yaml .
+
+## To update 
+helm upgrade --install amq --values=examples/broker/simple-broker.yaml --values=examples/queues/multiple-queues.yaml . 
+```
 
 ## Instalação do operator
 
