@@ -14,9 +14,14 @@ amq:
     console:
       expose: true
     acceptors:
-    - name: ssl
+    - name: tcp
       protocols: core,amqp,openwire
       port: 61616
+      connectionsAllowed: 5
+      expose: true
+    - name: ssl
+      protocols: core,amqp,openwire
+      port: 61617
       connectionsAllowed: 5
       sslEnabled: true
       sslSecret: broker-tls

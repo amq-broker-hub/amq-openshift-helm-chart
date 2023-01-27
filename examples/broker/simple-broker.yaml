@@ -1,8 +1,8 @@
 amq:
   name: amq
   broker:
-    # adminUser: admin
-    # adminPassword: admin
+    adminUser: admin
+    adminPassword: admin
     deploymentPlan:
       size: 1
       image: placeholder
