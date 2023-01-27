@@ -4,7 +4,7 @@ amq:
     adminUser: admin
     adminPassword: admin
     deploymentPlan:
-      size: 1
+      size: 2
       image: placeholder
       requireLogin: true
       jolokiaAgentEnabled: true
