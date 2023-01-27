@@ -9,8 +9,8 @@ amq:
       requireLogin: true
       jolokiaAgentEnabled: true
       persistenceEnabled: true
-    storage:
-      size: 2Gi      
+      storage:
+        size: 2Gi      
     livenessProbe:
       initialDelaySeconds: 120
     console:
