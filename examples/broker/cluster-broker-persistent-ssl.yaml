@@ -1,0 +1,31 @@
+amq:
+  name: amq
+  broker:
+    adminUser: admin
+    adminPassword: admin
+    deploymentPlan:
+      size: 1
+      image: placeholder
+      requireLogin: true
+      jolokiaAgentEnabled: true
+      persistenceEnabled: true
+      messageMigration: true
+    storage:
+      size: 2Gi      
+    livenessProbe:
+      initialDelaySeconds: 120
+    console:
+      expose: true
+    acceptors:
+    - name: tcp
+      protocols: core,amqp,openwire
+      port: 61616
+      connectionsAllowed: 5
+      expose: true
+    - name: ssl
+      protocols: core,amqp,openwire
+      port: 61617
+      connectionsAllowed: 5
+      sslEnabled: true
+      sslSecret: broker-tls
+      expose: true
