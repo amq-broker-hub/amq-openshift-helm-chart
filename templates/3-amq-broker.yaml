@@ -37,6 +37,10 @@ spec:
         cpu: 500m
         memory: 2048Mi
 {{- end }}
+{{- if .Values.amq.broker.brokerProperties }}
+  brokerProperties:
+    {{- toYaml .Values.amq.broker.brokerProperties | nindent 4 }}  
+{{- end }}
 {{- if .Values.amq.broker.console }}
   console:
     {{- toYaml .Values.amq.broker.console | nindent 4 }}  
