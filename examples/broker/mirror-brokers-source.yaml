@@ -1,0 +1,34 @@
+amq:
+  name: amq-source
+  broker:
+    adminUser: admin
+    adminPassword: admin
+    deploymentPlan:
+      size: 1
+      image: placeholder
+      requireLogin: true
+      jolokiaAgentEnabled: true
+      persistenceEnabled: true
+      storage:
+        size: 2Gi
+    livenessProbe:
+      initialDelaySeconds: 120
+    console:
+      expose: true
+    brokerProperties:
+    - "AMQPConnections.target.uri=tcp://amq-target-ss-0.amq-target-hdls-svc.<namespace>.svc.cluster.local:61616?clientFailureCheckPeriod=2000&connectionTTL=5000"
+    - "AMQPConnections.target.retryInterval=5000"
+    - "AMQPConnections.target.reconnect-attempts=-1"
+    - "AMQPConnections.target.user=admin"
+    - "AMQPConnections.target.password=password"
+    - "AMQPConnections.target.autoStart=true"
+    - "AMQPConnections.target.connectionElements.mirror.type=MIRROR"
+    - "AMQPConnections.target.connectionElements.mirror.messageAcknowledgements=true"
+    - "AMQPConnections.target.connectionElements.mirror.queueCreation=true"
+    - "AMQPConnections.target.connectionElements.mirror.queueRemoval=true"
+    acceptors:
+    - name: tcp
+      protocols: core,amqp,openwire
+      port: 61616
+      connectionsAllowed: 5
+      expose: true
