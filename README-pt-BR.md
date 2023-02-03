@@ -10,9 +10,13 @@ O Helm pode ser baixado e instalado seguindo as intruções em: https://helm.sh/
 
 ```bash
 .
+├── broker.ks
 ├── Chart.yaml
 ├── examples
 │   ├── broker
+│   │   ├── cluster-broker-persistent-ssl.yaml
+│   │   ├── mirror-brokers-source.yaml
+│   │   ├── mirror-brokers-target.yaml
 │   │   ├── simple-broker-persistent-ssl.yaml
 │   │   ├── simple-broker-ssl.yaml
 │   │   └── simple-broker.yaml
@@ -27,6 +31,8 @@ O Helm pode ser baixado e instalado seguindo as intruções em: https://helm.sh/
 │   └── subscription
 │       ├── all-namespace-subscription.yaml
 │       └── namespace-subscription.yaml
+├── README.md
+├── README-pt-BR.md
 ├── templates
 │   ├── 1-operatorgroup.yaml
 │   ├── 2-subscription.yaml
